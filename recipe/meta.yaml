@@ -1,5 +1,5 @@
 {% set name = "pyopengl-accelerate" %}
-{% set version = "3.1.9" %}
+{% set version = "3.1.10" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,11 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
-  sha256: 85957c7c76975818ff759ec9243f9dc7091ef6f373ea37a2eb50c320fd9a86f3
-  patches:
-    # - long_type.patch # patch required to fix: https://github.com/mcfletch/pyopengl/pull/155
-    - 0001-change-long-to-int.patch
+  sha256: 82751c83f0a6f732b8b5923990edc2441d38176a98756b1718e8d6c4379f5a71
+
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   build:
@@ -54,7 +52,7 @@ test:
     - OpenGL_accelerate.errorchecker
     - OpenGL_accelerate.nones_formathandler
   commands:
-    - pytest tests  # [not linux]
+   - pytest tests  # [not linux]
 
 about:
   home: http://pyopengl.sourceforge.net
